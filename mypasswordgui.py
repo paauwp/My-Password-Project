@@ -1,3 +1,5 @@
+# KEYBINDING BRANCH
+
 secret='sumba5postgress'
 import hashlib
 import psycopg2 as pg2
@@ -18,7 +20,7 @@ def quit():
     print("Destroy Window")
     root.destroy()
 
-def save():
+def save(*args):
     userN = user_name.get() # haal de tkinter string variable user_name op en converteer naar string userN
     passW = password.get() # haal de tkinter sting variable password op en converteer naar string passW
 
@@ -78,6 +80,9 @@ def venster():
     invoer_button.pack(side="left")
     quit_button.pack(side="left")
 
+    # Keybindings
+    root.bind("<Return>", save)
+    root.bind("<KP_Enter>", save)
     
 
 #MAIN   
