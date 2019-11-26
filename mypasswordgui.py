@@ -1,5 +1,3 @@
-#BRANCH HASH IMPLEMENTATION
-
 secret='sumba5postgress'
 import hashlib
 import psycopg2 as pg2
