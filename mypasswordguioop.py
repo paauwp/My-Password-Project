@@ -1,12 +1,16 @@
 import tkinter as tk
 import tkinter.font as font
 from tkinter import ttk
+import hashlib
+import psycopg2 as pg2
+
+secret='sumba5postgress'
 
 class eK_tkTk_root(tk.Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.title("Pieter's Password Project PPP")
+        self.title("Pieter's Password Project")
         O_PassWordInputFrame = eK_PasswordInputFrame(self, padding=(60,30))
         O_PassWordInputFrame.grid()
         #self.Op_frame=ttk.Frame(self, padding=(60,30))
@@ -19,7 +23,7 @@ class eK_PasswordInputFrame(ttk.Frame):
 
         self.Op_username = tk.StringVar()
         self.Op_password = tk.StringVar()
-
+    
         # -- Widgets --
         username_label = ttk.Label(self, text="User Name:")
         username_input = ttk.Entry(self, width=10, textvariable=self.Op_username, font=(None, 15))  # None means "don't change the font".
@@ -32,21 +36,18 @@ class eK_PasswordInputFrame(ttk.Frame):
         username_input.focus()
         password_label.grid(column=0, row=1, sticky="W")
         password_input.grid(column=1, row=1, sticky="EW")
-        # calc_button.grid(column=0, row=2, columnspan=2, sticky="EW")
+
+        # -- Button(s) --
+        input_button = ttk.Button(self,text="Input in DB", command=self.Save)
+        input_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
             child.grid_configure(padx=15, pady=15)
-
-    def M_calculate_feet(self,*args):
-        try:
-            metres = float(self.Op_metres_value.get())
-            feet = metres * 3.28084
-            self.Op_feet_value.set(f"{feet:.3f}")
-        except ValueError:
-            pass
-
-
-
+    
+    def Save(self, *args):
+        string ="test"
+        hash = hashlib.sha256(string.encode('utf-8')).hexdigest()
+        print (hash)
 
 
 O_root = eK_tkTk_root()
