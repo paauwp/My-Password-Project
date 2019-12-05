@@ -66,7 +66,7 @@ class eK_PasswordInputFrame(ttk.Frame):
             cur.execute(postgres_insert_query, record_to_insert)
             conn.commit()
             count = cur.rowcount
-            success_label = ttk.Label(self, text="Record inserted successfully into passwords table")
+            success_label = ttk.Label(self, text=f"{count} : Record(s) inserted successfully into passwords table", foreground="green")
             success_label.grid(row=4, column=0)
             #print (count, "Record inserted successfully into passwords table")
         
