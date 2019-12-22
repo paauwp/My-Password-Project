@@ -1,64 +1,67 @@
 import tkinter as tk
 from tkinter import ttk
 
-def Window1():
+def MngmtConsoleWindow():
+    
     def QuitWindow1():
-        root1.destroy()
+        ConsoleWindow.destroy()
 
-    root1.title("Management Console")
-    main = ttk.Frame(root1, padding=(40, 20))
-    main.grid()
+    ConsoleWindow = tk.Tk()
+    ConsoleWindow.resizable(False, False)
+    ConsoleWindow.title("Management Console")
+    
+    ConsoleFrame = ttk.Frame(ConsoleWindow, padding=(40, 20))
+    ConsoleFrame.grid()
 
-    greet_button = ttk.Button(main, text="DB Input", command=dbInputWindow, style="PomodoroButton.TButton")
-    greet_button.grid(row=0, column=0, sticky="EW", padx=10)
+    dbinput_button = ttk.Button(ConsoleFrame, text="DB Input", command=dbInputWindow, style="PomodoroButton.TButton")
+    dbinput_button.grid(row=0, column=0, sticky="EW", padx=10)
 
-    greet_button = ttk.Button(main, text="Frame2", command=Window2, style="PomodoroButton.TButton")
-    greet_button.grid(row=0, column=1, sticky="EW", padx=10)
+    action2_button = ttk.Button(ConsoleFrame, text="Frame2", command=Window2, style="PomodoroButton.TButton")
+    action2_button.grid(row=0, column=1, sticky="EW", padx=10)
 
-    greet_button = ttk.Button(main, text="Frame3", command=Window2, style="PomodoroButton.TButton")
-    greet_button.grid(row=0, column=2, sticky="EW", padx=10)
+    action3_button = ttk.Button(ConsoleFrame, text="Frame3", command=Window2, style="PomodoroButton.TButton")
+    action3_button.grid(row=0, column=2, sticky="EW", padx=10)
 
-    greet_button = ttk.Button(main, text="QUIT", command=QuitWindow1, style="PomodoroButton.TButton")
-    greet_button.grid(row=0, column=3, sticky="EW", padx=10)
+    quit_button = ttk.Button(ConsoleFrame, text="Quit", command=QuitWindow1, style="PomodoroButton.TButton")
+    quit_button.grid(row=0, column=3, sticky="EW", padx=10)
 
-    root1.mainloop()
+    ConsoleWindow.mainloop()
 
 def Window2():
     pass
 
 def dbInputWindow():
+    
     def quit():
-        root2.destroy()
+        DbInputWindow.destroy()
 
-    #root1.destroy()
-    root2=tk.Tk()
-    root2.geometry("600x400")
-    root2.resizable(False, False)
-    root2.title("DataBase Input")
-    root2.columnconfigure(0, weight=1)
-    main2 = ttk.Frame(root2, padding=(40, 20))
-    main2.grid()
+    username = tk.StringVar()
+    DbInputWindow=tk.Tk()
+    DbInputWindow.geometry("600x400")
+    DbInputWindow.resizable(False, False)
+    DbInputWindow.title("DataBase Input")
+    DbInputFrame = ttk.Frame(DbInputWindow, padding=(20, 20))
+    DbInputFrame.columnconfigure(0, weight=1)
+    DbInputFrame.grid()
 
     # -- Widgets --
-    username_label = ttk.Label(root2, text="User Name:")
-    #username_input = ttk.Entry(main2, width=10, textvariable=self.Op_username, font=(None, 15))  # None means "don't change the font".
-    password_label = ttk.Label(root2, text="Password: ")
+    username_label = ttk.Label(DbInputFrame, text="User Name:")
+    username_label.grid(column=1, row=0, sticky="W", padx=10)
+    
+    username_input = ttk.Entry(DbInputWindow, width=10, textvariable=username)  # None means "don't change the font".
+    username_input.grid(column=2, row=0, sticky="W")
+    username_input.focus()
+    
+    #password_label = ttk.Label(DbInputFrame, text="Password: ")
     #password_input = ttk.Entry(main2, width=10, textvariable=self.Op_password, font=(None, 15))  # None means "don't change the font".
 
-    # -- Layout --
-    username_label.grid(column=0, row=0, sticky="W", padx=10)
-    #username_input.grid(column=1, row=0, sticky="EW")
-    #username_input.focus()
-    password_label.grid(column=0, row=1, sticky="W", padx=10)
-    #password_input.grid(column=1, row=1, sticky="EW")
+    #password_label.grid(column=0, row=1, sticky="W", padx=10)
+    #password_input.grid(column=1, row=1, sticky="W")
     
-    greet_button = ttk.Button(main2, text="QUIT", command=quit, style="PomodoroButton.TButton")
-    greet_button.grid(column=0, row=3, sticky="EW", padx=10)
+    #greet_button = ttk.Button(DbInputFrame, text="Quit", command=quit, style="PomodoroButton.TButton")
+    #greet_button.grid(column=0, row=3, sticky="W", padx=10)
 
-    root2.mainloop()
+    DbInputWindow.mainloop()
 
 
-root1 = tk.Tk()
-root1.resizable(False, False)
-
-Window1()
+MngmtConsoleWindow()
